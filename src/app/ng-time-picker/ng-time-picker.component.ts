@@ -7,6 +7,14 @@ import { Component } from '@angular/core';
 })
 export class NgTimePickerComponent {
 
+  disabledHours(): number[]{
+
+    if(arguments[0]===10)  return [1, 2, 3];
+
+    return [];
+  };
+
+
   disabledHoursWithParms(id:number){
 
     return (): number[] => {

@@ -1,4 +1,6 @@
 <nz-time-picker 
+
+    [nzDisabledHours]="disabledHours.bind(this, 10)"
     [nzDisabledHours]="disabledHoursWithParms(10)"
     [nzDisabledMinutes]="disabledMinutesWithParms(10)">
 </nz-time-picker> 
