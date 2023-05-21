@@ -17,6 +17,7 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NgTimePickerComponent } from './ng-time-picker/ng-time-picker.component';
 import { ZorroCompomentModule } from './zorro-compoment/zorro-compoment.module';
+import { NzInputNumberComponent } from './nz-input-number/nz-input-number.component';
 
 registerLocaleData(en);
 
@@ -26,7 +27,8 @@ registerLocaleData(en);
     ObservableComponent,
     AComponent,
     BComponent,
-    NgTimePickerComponent
+    NgTimePickerComponent,
+    NzInputNumberComponent
   ],
   imports: [
     BrowserModule,

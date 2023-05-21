@@ -1,0 +1,9 @@
+<nz-input-number
+    [(ngModel)]="value"
+    [nzStep]="0.5"
+    [nzPlaceHolder]="'Digital'"
+    [nzFormatter]="formatNumber"
+    [nzParser]="parseNumber"
+></nz-input-number>
+
+<button (click)="btnClick()">button</button>
