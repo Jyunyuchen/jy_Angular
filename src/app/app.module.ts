@@ -34,6 +34,7 @@ registerLocaleData(en);
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,

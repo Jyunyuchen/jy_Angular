@@ -1,4 +1,6 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AfterViewInit, Component, ElementRef } from '@angular/core';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-resize-right-div-and-left-div',
@@ -13,6 +15,9 @@ export class ResizeRightDivAndLeftDivComponent implements AfterViewInit{
   divider! : any;
 
   date : Date = new Date();
+
+  listHolidayMap : { [holiday : string] : {holidayStartTime : string, holidayEndTime : string}[] } = {};
+ 
 
   listDataMap = {
     eight: [
@@ -37,7 +42,9 @@ export class ResizeRightDivAndLeftDivComponent implements AfterViewInit{
   isStartDrag = false;
   startX = 0;
 
-  constructor(private elementRef: ElementRef){
+  constructor(private elementRef : ElementRef,
+              private httpClientttp : HttpClient){
+
   }
 
   ngAfterViewInit(): void {
@@ -171,6 +178,33 @@ export class ResizeRightDivAndLeftDivComponent implements AfterViewInit{
           timeouterId = null;
         }, 0);
       }
+  }
+
+  test(){
+    const httpOptions = {
+      headers: new HttpHeaders({ "Content-Type": "application/json" })
+    };
+
+    this.httpClientttp.get<any>('http://localhost:8080/test/test01').subscribe({
+
+      next:(res) => {
+          console.log('data==>' + JSON.stringify(res));
+          console.log('data key==>' + _.keys(res));  
+
+          _.keys(res).forEach(key => {
+            this.listHolidayMap[key] = res[key];
+          });
+
+          console.log('this.listHolidayMap', JSON.stringify(this.listHolidayMap));
+      },
+      error:(error)=>{
+
+      },
+      complete:()=>{
+
+      }
+    });
+
   }
 
 }
