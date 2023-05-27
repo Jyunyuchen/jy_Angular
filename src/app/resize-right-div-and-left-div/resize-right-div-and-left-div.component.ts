@@ -34,6 +34,9 @@ export class ResizeRightDivAndLeftDivComponent implements AfterViewInit{
     ]
   };
 
+  isStartDrag = false;
+  startX = 0;
+
   constructor(private elementRef: ElementRef){
   }
 
@@ -48,32 +51,26 @@ export class ResizeRightDivAndLeftDivComponent implements AfterViewInit{
     console.log(this.divider);
 
     this.divider.addEventListener('mousedown', this.startDrag);
+    //document.addEventListener('mousemove',this.throttleDragHandler(this.dragHandler));
     document.addEventListener('mousemove', this.dragHandler);
-    document.addEventListener('mouseup', this.stopDrag)
-    //document.addEventListener('mouseleave', this.stopDrag)
-
-
+    document.addEventListener('mouseup', this.stopDrag);
+    document.addEventListener('mouseleave', this.stopDrag);
   }
 
-  isStartDrag = false;
-  isFirstEnterDrag = false;
-  startX = 0;
-  rect : any = null;
+
 
   startDrag = (event: MouseEvent): void =>{ 
     this.isStartDrag = true;
-    this.isFirstEnterDrag = true;
-    console.log('start drag', this.isStartDrag);
-    //console.log('offsetX=>', event.offsetX);
-    //console.log('pageX=>', event.pageX);
     this.startX = event.pageX;
-    this.rect = this.divider.getBoundingClientRect();
+    console.log('start drag', this.isStartDrag);
   }
 
   count = 0;
 
   dragHandler = (event : MouseEvent) : void => {
     event.preventDefault();
+    // console.log('this==>',this);
+    // console.log('event==>',event);
 
     if(this.isStartDrag) {
       const browserMaxWidthNoscrollbars = document.documentElement.clientWidth;
@@ -83,11 +80,27 @@ export class ResizeRightDivAndLeftDivComponent implements AfterViewInit{
       console.log('event.page=>', event.pageX);
       console.log('befor this.divider.rectLeft=>', dividerRect.left);
       
-      let distanceMoved = this.startX - event.pageX;
+      let distanceMoved = 0;
+      if(dividerRect.left <= 30 && this.startX > event.pageX){
+        distanceMoved = 0
+      }
+      else if(dividerRect.left <= 30 && this.startX < event.pageX){
+        distanceMoved = this.startX - event.pageX;
+      }
+      else if(dividerRect.left >= browserMaxWidthNoscrollbars - 200 && this.startX < event.pageX){
+        distanceMoved = 0;
+      }
+      else if(dividerRect.left >= browserMaxWidthNoscrollbars - 200 && this.startX > event.pageX){
+        distanceMoved = this.startX - event.pageX;
+      }
+      else{
+        distanceMoved = this.startX - event.pageX;
+      }
       this.startX = event.pageX;
 
-      distanceMoved = dividerRect.left <= 30 ? -1 : dividerRect.left >= browserMaxWidthNoscrollbars - 40 ? 1 : distanceMoved;
 
+
+      console.log('拖曳距離=>', distanceMoved)
       // 調整左邊div的寬度
       let leftDivRect = this.leftDiv.getBoundingClientRect();
       console.log('B rect 左邊div的寬度=>', leftDivRect.width);
@@ -97,6 +110,24 @@ export class ResizeRightDivAndLeftDivComponent implements AfterViewInit{
 
       dividerRect = this.divider.getBoundingClientRect();
       console.log('after this.divider.rectLeft=>', dividerRect.left);
+
+
+      // 取得拖曳線之前的元素寬度
+      const leftDivComputedStyle = window.getComputedStyle(this.leftDiv);
+      const dividerComputedStyle = window.getComputedStyle(this.divider);
+      // console.log('左邊div的寬度==>', leftDivComputedStyle.width);
+      console.log('leftDiv的marginLeft==>', leftDivComputedStyle.marginLeft);
+      console.log('分隔線的marginLeft==>', dividerComputedStyle.marginLeft);
+      // const totalWidthLeftOfTheDivider = this.getWidthNum(leftDivComputedStyle.width) + this.getWidthNum(leftDivComputedStyle.marginLeft) + this.getWidthNum(dividerComputedStyle.marginLeft)
+      // console.log('**拖曳線之前的元素總寬度**==>', totalWidthLeftOfTheDivider);
+
+
+      if(dividerRect.left > browserMaxWidthNoscrollbars - 200 ){
+        console.log('拖曳線左邊的寬度 > 瀏覽器沒有卷軸的寬度，進行校正=>', leftDivRect.width);
+        this.leftDiv.style.width = (browserMaxWidthNoscrollbars - 200 - this.getWidthNum(leftDivComputedStyle.marginLeft) - this.getWidthNum(dividerComputedStyle.marginLeft)) + 'px';
+        leftDivRect = this.leftDiv.getBoundingClientRect();
+        console.log('校正後的寬度=>', leftDivRect.width);
+      }
 
       console.log('browserMaxWidth=>', browserMaxWidthNoscrollbars);
       console.log('draging');
@@ -117,6 +148,29 @@ export class ResizeRightDivAndLeftDivComponent implements AfterViewInit{
     const matches = widthStr.match(/\d+/);
     const widthNumber = matches ? parseInt(matches[0], 10) : 0;
     return widthNumber;
+  }
+
+  
+  throttleDragHandler(func : Function) : (event : MouseEvent) => void {
+
+      let timeouterId : any = null;
+
+      return (event : MouseEvent) : void => {
+        event.preventDefault();
+        if(!this.isStartDrag) {
+          return;
+        }
+
+        if(timeouterId !== null){
+          console.log('正在執行拖曳', timeouterId);
+          return;
+        }
+
+        timeouterId = setTimeout(()=>{
+          func(event);
+          timeouterId = null;
+        }, 0);
+      }
   }
 
 }
