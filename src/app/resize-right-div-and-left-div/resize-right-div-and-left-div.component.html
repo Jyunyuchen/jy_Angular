@@ -1,0 +1,47 @@
+<div class="headFlex">
+    
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis voluptatum reiciendis eum quo alias repudiandae totam magni, voluptate ipsam quaerat autem incidunt fugit laborum debitis et sapiente dignissimos deleniti sunt.
+    </p>
+
+</div>
+
+<div class="bodyFlex">
+    
+    <div class="leftDiv" >
+        <div class="itemL1"><p>Lorem ipsum dolor sit amet consectetur.Lorem ipsum dolor sit amet consectetur.Lorem ipsum dolor sit amet consectetur.Lorem ipsum dolor sit amet consectetur.Lorem ipsum dolor sit amet consectetur.</p>
+        </div>
+    </div>
+    
+    <nz-divider nzType="vertical" class="custom-divider"></nz-divider>
+
+    <div class="rightDiv">
+        <!-- <div class="itemR1"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora placeat architecto, quisquam aliquam commodi aspernatur adipisci? Minima deleniti modi ullam sapiente iure dignissimos repellendus perspiciatis deserunt magnam adipisci, cum sunt.</p>
+        </div> -->
+        <nz-calendar 
+            [(ngModel)]="date">
+            <ul *nzDateCell="let date" class="events">
+                <ng-container [ngSwitch]="date.getDate()">
+                  <ng-container *ngSwitchCase="8">
+                    <li *ngFor="let item of listDataMap.eight">
+                      <nz-badge [nzStatus]="item.type" [nzText]="item.content"></nz-badge>
+                    </li>
+                  </ng-container>
+                  <ng-container *ngSwitchCase="10">
+                    <li *ngFor="let item of listDataMap.ten">
+                      <nz-badge [nzStatus]="item.type" [nzText]="item.content"></nz-badge>
+                    </li>
+                  </ng-container>
+                  <ng-container *ngSwitchCase="11">
+                    <li *ngFor="let item of listDataMap.eleven">
+                      <nz-badge [nzStatus]="item.type" [nzText]="item.content"></nz-badge>
+                    </li>
+                  </ng-container>
+                </ng-container>
+              </ul>
+              
+        </nz-calendar>
+    </div>
+
+
+</div>

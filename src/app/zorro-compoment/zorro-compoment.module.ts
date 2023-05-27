@@ -32,6 +32,7 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzResultModule } from 'ng-zorro-antd/result';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzTagModule } from 'ng-zorro-antd/tag';
+import { NzBadgeModule } from 'ng-zorro-antd/badge';
 
 const zorroComponent :any = [
   NzButtonModule
@@ -66,6 +67,7 @@ const zorroComponent :any = [
  ,NzResultModule
  ,NzDrawerModule
  ,NzTagModule
+ ,NzBadgeModule
 ]
 @NgModule({
   imports: [

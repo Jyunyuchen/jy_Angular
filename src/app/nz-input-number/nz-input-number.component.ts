@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 
+/**
+ * 將輸入至 nz-input-number 的值，若有小數點或非數字的過濾掉 
+ */
 @Component({
   selector: 'app-nz-input-number',
   templateUrl: './nz-input-number.component.html',
@@ -38,6 +41,11 @@ export class NzInputNumberComponent {
 
     return value;
 
+  }
+
+  focus(){
+    console.log('focus !!');
+    
   }
 
 }

@@ -18,6 +18,7 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NgTimePickerComponent } from './ng-time-picker/ng-time-picker.component';
 import { ZorroCompomentModule } from './zorro-compoment/zorro-compoment.module';
 import { NzInputNumberComponent } from './nz-input-number/nz-input-number.component';
+import { ResizeRightDivAndLeftDivComponent } from './resize-right-div-and-left-div/resize-right-div-and-left-div.component';
 
 registerLocaleData(en);
 
@@ -28,7 +29,8 @@ registerLocaleData(en);
     AComponent,
     BComponent,
     NgTimePickerComponent,
-    NzInputNumberComponent
+    NzInputNumberComponent,
+    ResizeRightDivAndLeftDivComponent
   ],
   imports: [
     BrowserModule,
