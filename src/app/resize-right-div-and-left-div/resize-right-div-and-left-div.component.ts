@@ -9,9 +9,9 @@ import * as _ from 'lodash';
 })
 export class ResizeRightDivAndLeftDivComponent implements AfterViewInit{
 
-  // bodyFlexDiv! : HTMLDivElement;
   leftDiv! : HTMLDivElement;
   rightDiv! : HTMLDivElement;
+  itemL1! : HTMLDivElement;
   divider! : any;
 
   date : Date = new Date();
@@ -51,6 +51,7 @@ export class ResizeRightDivAndLeftDivComponent implements AfterViewInit{
 
     this.divider = this.elementRef.nativeElement.querySelector('.custom-divider') as any;
     this.leftDiv = this.elementRef.nativeElement.querySelector('.leftDiv') as HTMLDivElement;
+    //this.itemL1 = this.elementRef.nativeElement.querySelector('.itemL1') as HTMLDivElement;
     this.rightDiv = this.elementRef.nativeElement.querySelector('.rightDiv') as HTMLDivElement;
     
     console.log(this.leftDiv);
