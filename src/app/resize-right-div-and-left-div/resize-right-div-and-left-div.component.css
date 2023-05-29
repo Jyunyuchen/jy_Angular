@@ -34,7 +34,8 @@
 
 .custom-divider {
     height: 1200px;
-    cursor: col-resize;
+    /*cursor: col-resize;*/
+    cursor: ew-resize;
     border-width: 5px;
     margin: 0 20px;
 }
