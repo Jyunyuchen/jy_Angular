@@ -18,6 +18,7 @@ export class ResizeRightDivAndLeftDivComponent implements AfterViewInit{
 
   listHolidayMap : { [holiday : string] : {holidayStartTime : string, holidayEndTime : string}[] } = {};
  
+  holidayMap : Map<string, string> = new Map();
 
   listDataMap = {
     eight: [
@@ -182,6 +183,12 @@ export class ResizeRightDivAndLeftDivComponent implements AfterViewInit{
   }
 
   test(){
+    this.holidayMap.set('2023-06-01', 'test');
+    console.log(this.holidayMap);
+    
+  }
+
+  test1(){
     const httpOptions = {
       headers: new HttpHeaders({ "Content-Type": "application/json" })
     };

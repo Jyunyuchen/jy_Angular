@@ -9,7 +9,7 @@ import { AComponent } from './a/a.component';
 import { BComponent } from './b/b.component';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
-import { registerLocaleData } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -19,6 +19,8 @@ import { NgTimePickerComponent } from './ng-time-picker/ng-time-picker.component
 import { ZorroCompomentModule } from './zorro-compoment/zorro-compoment.module';
 import { NzInputNumberComponent } from './nz-input-number/nz-input-number.component';
 import { ResizeRightDivAndLeftDivComponent } from './resize-right-div-and-left-div/resize-right-div-and-left-div.component';
+import { AgGridInfiniteComponent } from './ag-grid-infinite/ag-grid-infinite.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 registerLocaleData(en);
 
@@ -30,7 +32,8 @@ registerLocaleData(en);
     BComponent,
     NgTimePickerComponent,
     NzInputNumberComponent,
-    ResizeRightDivAndLeftDivComponent
+    ResizeRightDivAndLeftDivComponent,
+    AgGridInfiniteComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,9 @@ registerLocaleData(en);
     BrowserAnimationsModule,
     NzLayoutModule,
     NzMenuModule,
-    ZorroCompomentModule,
+    ZorroCompomentModule, 
+    CommonModule,
+    AgGridModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US }

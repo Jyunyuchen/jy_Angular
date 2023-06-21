@@ -21,9 +21,12 @@
         <nz-calendar 
             [(ngModel)]="date">
             <ul *nzDateCell="let date" class="events">
-                <li *ngFor="let holidayTime of listHolidayMap[date.toLocaleDateString('en-CA')]">
+                <!-- <li *ngFor="let holidayTime of listHolidayMap[date.toLocaleDateString('en-CA')]">
                     <nz-badge [nzStatus]="holidayTime.holidayStartTime" [nzText]="holidayTime.holidayStartTime + '~' +holidayTime.holidayEndTime"></nz-badge>
-                </li>
+                </li> -->
+                <ng-container *ngIf="holidayMap.get(date.toLocaleDateString('en-CA')) !== undefined">
+                    <nz-tag [nzColor]="'green'">green</nz-tag>
+                </ng-container>
             </ul>
         </nz-calendar>
     </div>

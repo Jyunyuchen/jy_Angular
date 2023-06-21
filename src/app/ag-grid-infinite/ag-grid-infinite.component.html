@@ -1,0 +1,19 @@
+<button (click)="fetchData()">獲取資料</button>
+
+<nz-divider class="custom-divider"></nz-divider>
+
+<ag-grid-angular
+    style="width: 500px; height: 500px;"
+    class="ag-theme-alpine"
+    [columnDefs]="columnDefs"
+    [rowBuffer]="rowBuffer"
+    [rowSelection]="rowSelection"
+    [rowModelType]="rowModelType"
+    [cacheBlockSize]="cacheBlockSize"
+    [cacheOverflowSize]="cacheOverflowSize"
+    [maxConcurrentDatasourceRequests]="maxConcurrentDatasourceRequests"
+    [infiniteInitialRowCount]="infiniteInitialRowCount"
+    [maxBlocksInCache]="maxBlocksInCache"
+    [rowData]="rowData"
+    (gridReady)="onGridReady($event)">
+</ag-grid-angular>
