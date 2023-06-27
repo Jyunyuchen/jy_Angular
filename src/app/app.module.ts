@@ -21,6 +21,7 @@ import { NzInputNumberComponent } from './nz-input-number/nz-input-number.compon
 import { ResizeRightDivAndLeftDivComponent } from './resize-right-div-and-left-div/resize-right-div-and-left-div.component';
 import { AgGridInfiniteComponent } from './ag-grid-infinite/ag-grid-infinite.component';
 import { AgGridModule } from 'ag-grid-angular';
+import { PolymorphismCellRendererComponent } from './polymorphism-cell-renderer/polymorphism-cell-renderer.component';
 
 registerLocaleData(en);
 
@@ -34,6 +35,7 @@ registerLocaleData(en);
     NzInputNumberComponent,
     ResizeRightDivAndLeftDivComponent,
     AgGridInfiniteComponent,
+    PolymorphismCellRendererComponent,
   ],
   imports: [
     BrowserModule,
