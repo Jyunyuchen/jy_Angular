@@ -70,11 +70,10 @@ export class AgGridInfiniteComponent {
   public rowSelection: 'single' | 'multiple' = 'multiple';
   public rowModelType: RowModelType = 'infinite';
   public cacheBlockSize = 10;
-  public cacheOverflowSize = 2;
+  public cacheOverflowSize = 10;
   public maxConcurrentDatasourceRequests = 1;
   public infiniteInitialRowCount = 1000;
   public maxBlocksInCache = 10;
-  public rowData!: any[];
   public gridApi!:GridApi;
 
   fetchData(){
